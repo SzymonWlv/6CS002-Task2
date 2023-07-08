@@ -5,14 +5,14 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * @author Kevan Buckley, maintained by __student
+ * @author Kevan Buckley, maintained by Szymon Baraniecki student 1913153
  * @version 2.0, 2014
  */
 
 public class PictureFrame {
 	public int[] reroll = null;
 	public Main master = null;
-
+	// DominoPanel extends the class JPanel
 	class DominoPanel extends JPanel {
 		private static final long serialVersionUID = 4190229282411119364L;
 
@@ -23,7 +23,7 @@ public class PictureFrame {
 				}
 			}
 		}
-
+		// Method used to draw headings
 		public void drawHeadings(Graphics g) {
 			for (int are = 0; are < 7; are++) {
 				fillDigitGivenCentre(g, 10, 30 + are * 20, 20, are + 1);
@@ -33,7 +33,7 @@ public class PictureFrame {
 				fillDigitGivenCentre(g, 30 + see * 20, 10, 20, see + 1);
 			}
 		}
-
+		// Method used to draw the domino, starts when domino is placed 
 		public void drawDomino(Graphics g, Domino d) {
 			if (d.placed) {
 				int y = Math.min(d.ly, d.hy);
@@ -48,17 +48,17 @@ public class PictureFrame {
 				drawDigitGivenCentre(g, 30 + d.lx * 20, 30 + d.ly * 20, 20, d.low, Color.BLUE);
 			}
 		}
-
+		// Code used to set colour 'black' of the object and drawing a digit
 		void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n) {
 			int radius = diameter / 2;
 			g.setColor(Color.BLACK);
-// g.drawOval(x - radius, y - radius, diameter, diameter);
+			// g.drawOval(x - radius, y - radius, diameter, diameter);
 			FontMetrics fm = g.getFontMetrics();
-// convert the string to an integer
+			// Converts string to an integer
 			String txt = Integer.toString(n);
 			g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
 		}
-
+		// Code used to set colour of the object and drawing a digit
 		void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n, Color c) {
 			int radius = diameter / 2;
 			g.setColor(c);
@@ -83,40 +83,41 @@ public class PictureFrame {
 			g.setColor(Color.YELLOW);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
-// numbaz(g);
-//
-// if (master!=null && master.orig != null) {
-// drawRoll(g, master.orig);
-// }
-// if (reroll != null) {
-// drawReroll(g, reroll);
-// }
-//
-// drawGrid(g);
-			Location l = new Location(1, 2);
+		// numbaz(g);
+		//
+		// if (master!=null && master.orig != null) {
+		// drawRoll(g, master.orig);
+		// }
+		// if (reroll != null) {
+		// drawReroll(g, reroll);
+		// }
+		//
+		// drawGrid(g);
+			
+		Location l = new Location(1, 2);
 
-			if (master.mode == 1) {
-				l.drawGridLines(g);
-				drawHeadings(g);
-				drawGrid(g);
-				master.drawGuesses(g);
-			}
-			if (master.mode == 0) {
-				l.drawGridLines(g);
-				drawHeadings(g);
-				drawGrid(g);
-				master.drawDominoes(g);
-			}
+		if (master.mode == 1) {
+			l.drawGridLines(g);
+			drawHeadings(g);
+			drawGrid(g);
+			master.drawGuesses(g);
 		}
+		if (master.mode == 0) {
+			l.drawGridLines(g);
+			drawHeadings(g);
+			drawGrid(g);
+			master.drawDominoes(g);
+		}
+	}
 
 		public Dimension getPreferredSize() {
-// the application window always prefers to be 202x182
+			// Setting the standard view of the domino game to 202 * 182
 			return new Dimension(202, 182);
 		}
 	}
 
 	public DominoPanel dp;
-
+	// Creates a picture frame for the domino
 	public void PictureFrame(Main sf) {
 		master = sf;
 		if (dp == null) {
@@ -130,8 +131,6 @@ public class PictureFrame {
 	}
 
 	public void reset() {
-// TODO Auto-generated method stub
-
 	}
 
 }
