@@ -3,7 +3,7 @@ package base;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.*;
-import java.net.InetAddress;
+// import java.net.InetAddress;
 import java.text.DateFormat;
 import java.util.*;
 
@@ -288,7 +288,6 @@ public class Main {
 		    System.out
 		        .println("Welcome To Abominodo - The Best Dominoes Puzzle Game in the Universe");
 		    System.out.println("Version 2.1 (c), Kevan Buckley, 2014");
-		//    System.out.println("Serial number " + Special.getStamp());
 		
 		   System.out.println();
 		    System.out.println(MultiLingualStringTable.getMessage(0));
@@ -306,10 +305,8 @@ public class Main {
 		      System.out.println(h1);
 		      System.out.println(u1);
 		      System.out.println("1) Play");
-		      // System.out.println("1) Single player play");
 		      System.out.println("2) View high scores");
 		      System.out.println("3) View rules");
-		      // System.out.println("4) Multiplayer play");
 		      System.out.println("5) Get inspiration");
 		      System.out.println("0) Quit");
 		
@@ -828,27 +825,25 @@ public class Main {
 		        JEditorPane w;
 		        try {
 		          w = new JEditorPane("http://www.scit.wlv.ac.uk/~in6659/abominodo/");
-		
-		        } catch (Exception e) {
+		        } 
+		        catch (Exception e) {
 		          w = new JEditorPane("text/plain",
 		              "Problems retrieving the rules from the Internet");
 		        }
 		        f.setContentPane(new JScrollPane(w));
 		        f.setVisible(true);
 		        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
 		        break;
-		
+		      	}
 		      }
-		      case 4:
-		       System.out
-		            .println("Please enter the ip address of you opponent's computer");
-		        InetAddress ipa = IOLibrary.getIPAddress();
-		        new ConnectionGenius(ipa).fireUpGame();
-		      }
-		
 		    }
-		
+		    
+		      // }
+		      //case 4:
+		      //System.out
+		      //      .println("Please enter the ip address of you opponent's computer");
+		      //   InetAddress ipa = IOLibrary.getIPAddress();
+		      //  new ConnectionGenius(ipa).fireUpGame();
 		  }
 		
 		  private void recordTheScore() {
