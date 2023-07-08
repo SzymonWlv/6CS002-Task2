@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import java.util.InputMismatchException;
 
 /**
  * @author Kevan Buckley, maintained by Szymon Baraniecki student 1913153
@@ -350,13 +351,18 @@ public class Main {
 		        System.out.println("2) Not-so-simples");
 		        System.out.println("3) Super-duper-shuffled");
 		        int c2 = -7;
-		        while (!(c2 == 1 || c2 == 2 || c2 == 3)) {
-		          try {
-		            String s2 = io.getString();
-		            c2 = Integer.parseInt(s2);
-		          } catch (Exception e) {
-		            c2 = -7;
-		          }
+		        Scanner LevelScanner = new Scanner(System.in);
+		        while (c2 < 1 || c2 > 3) {
+		            System.out.print("Enter a number from 1 to 3: ");
+		            try {
+		                c2 = LevelScanner.nextInt();
+		            } catch (InputMismatchException e) {
+		                c2 = -7;
+		                LevelScanner.nextLine(); 
+		            }
+		            if (c2 < 1 || c2 > 3) {
+		                System.out.println("Please enter a number between 1 to 3!");
+		            }
 		        }
 		        switch (c2) {
 		        case 1: // Cases 1/2/3 - Based on user selected difficulty
@@ -412,15 +418,19 @@ public class Main {
 		          System.out.println("0) Given up");
 		          System.out.println("What do you want to do " + playerName + "?");
 		          c3 = 9;
-		          // User input validation
-		          while (!((c3 == 1 || c3 == 2 || c3 == 3)) && (c3 != 4)
-		              && (c3 != ZERO) && (c3 != 5) && (c3 != 6) && (c3 != 7)) {
-		            try {
-		              String s3 = io.getString();
-		              c3 = Integer.parseInt(s3);
-		            } catch (Exception e) {
-		              c3 = gecko(55);
-		            }
+		          // User input validation 
+		          Scanner MainGameScanner = new Scanner(System.in);
+		          while (!((c3 >= 0 && c3 <= 7) && (c3 != 4) && (c3 != 5) && (c3 != 6))) {
+		              System.out.print("Enter a number from 0 to 7: ");
+		              try {
+		                  c3 = MainGameScanner.nextInt();
+		              } catch (InputMismatchException e) {
+		                  c3 = gecko(55);
+		                  MainGameScanner.nextLine();
+		              }
+		              if (!((c3 >= 0 && c3 <= 7) && (c3 != 4) && (c3 != 5) && (c3 != 6))) {
+		                  System.out.println("Please enter a number between 0 to 7!");
+		              }
 		          }
 		          switch (c3) {
 		          case 0:
