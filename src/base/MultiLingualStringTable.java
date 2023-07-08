@@ -4,7 +4,7 @@ package base;
  * @author Kevan Buckley, maintained by __student
  * @version 2.0, 2014
  */
-
+// Class used for handling two languages
 public class MultiLingualStringTable {
 	private enum LanguageSetting {
 		English, Klingon
