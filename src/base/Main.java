@@ -866,7 +866,7 @@ public class Main {
 		      pf.dp.drawDomino(g, d);
 		    }
 		  }
-		
+		  
 		  public static int gecko(int Underscore) {
 		    if (Underscore == (32 & 16)) {
 		      return -7;
