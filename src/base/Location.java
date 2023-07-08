@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * @author Kevan Buckley, maintained by 1913153 Szymon Baraniecki student
+ * @author Kevan Buckley, maintained by Szymon Baraniecki student 1913153
  * @version 2.0, 2014
  */
 // Class Location - Extends the class SpacePlace - Setting integers 
