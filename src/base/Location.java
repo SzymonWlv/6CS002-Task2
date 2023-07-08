@@ -6,30 +6,30 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * @author Kevan Buckley, maintained by __student
+ * @author Kevan Buckley, maintained by 1913153 Szymon Baraniecki student
  * @version 2.0, 2014
  */
-
+// Class Location - Extends the class SpacePlace - Setting integers 
 public class Location extends SpacePlace {
 	public int c;
 	public int r;
 	public DIRECTION d;
 	public int tmp;
-
+	// Direction values Vertical and Horizontal
 	public enum DIRECTION {
 		VERTICAL, HORIZONTAL
 	};
-
+	// Location class constructor - Setting parameters of 'r' and 'c'
 	public Location(int r, int c) {
 		this.r = r;
 		this.c = c;
 	}
-
+	// 
 	public Location(int r, int c, DIRECTION d) {
 		this(r, c);
 		this.d = d;
 	}
-
+	// Loop method to show object as string - Checks for values 'd' and returns different outcomes 
 	public String toString() {
 		if (d == null) {
 			tmp = c + 1;
@@ -39,7 +39,7 @@ public class Location extends SpacePlace {
 			return "(" + (tmp) + "," + (r + 1) + "," + d + ")";
 		}
 	}
-
+	// Loop method used to draw grid lines using graphics object 'g'
 	public void drawGridLines(Graphics g) {
 		g.setColor(Color.LIGHT_GRAY);
 		for (tmp = 0; tmp <= 7; tmp++) {
@@ -49,7 +49,7 @@ public class Location extends SpacePlace {
 			g.drawLine(20 + see * 20, 20, 20 + see * 20, 160);
 		}
 	}
-
+	// Static method used to gather user input
 	public static int getInt() {
 		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 		do {
