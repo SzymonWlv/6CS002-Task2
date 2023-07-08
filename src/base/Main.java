@@ -58,8 +58,8 @@ public class Main {
 	private void generateGuesses() {
 		_Grid = new LinkedList<Domino>();
 		int count = 0;
-		int x = 0;
-		int y = 0;
+		int x = 0; // Not used
+		int y = 0; // Not used
 		for (int l = 0; l <= 6; l++) {
 			for (int h = l; h <= 6; h++) {
 				Domino d = new Domino(h, l);
@@ -420,18 +420,18 @@ public class Main {
 		          c3 = 9;
 		          // User input validation 
 		          Scanner MainGameScanner = new Scanner(System.in);
-		          while (!((c3 >= 0 && c3 <= 7) && (c3 != 4) && (c3 != 5) && (c3 != 6))) {
-		              System.out.print("Enter a number from 0 to 7: ");
-		              try {
-		                  c3 = MainGameScanner.nextInt();
-		              } catch (InputMismatchException e) {
-		                  c3 = gecko(55);
-		                  MainGameScanner.nextLine();
-		              }
-		              if (!((c3 >= 0 && c3 <= 7) && (c3 != 4) && (c3 != 5) && (c3 != 6))) {
-		                  System.out.println("Please enter a number between 0 to 7!");
-		              }
-		          }
+		          while (!((c3 >= 0 && c3 <= 7))) {
+		        	    System.out.print("Enter a number from 0 to 7: ");
+		        	    try {
+		        	        c3 = MainGameScanner.nextInt();
+		        	        if (!((c3 >= 0 && c3 <= 7))) {
+		        	            System.out.println("Please enter a number between 0 and 7!");
+		        	        }
+		        	    } catch (InputMismatchException e) {
+		        	        c3 = gecko(55);
+		        	        MainGameScanner.nextLine();
+		        	    }
+		        	}
 		          switch (c3) {
 		          case 0:
 		
