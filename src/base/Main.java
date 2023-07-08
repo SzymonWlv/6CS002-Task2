@@ -20,8 +20,8 @@ import java.util.InputMismatchException;
 public class Main {
 
 	private String playerName;
-	public List<Domino> _d;
-	public List<Domino> _g;
+	public List<Domino> _Digits;
+	public List<Domino> _Grid;
 	public int[][] grid = new int[7][8];
 	public int[][] gg = new int[7][8];
 	int mode = -1;
@@ -32,14 +32,14 @@ public class Main {
 	PictureFrame pf = new PictureFrame();
 	// Generating dominos
 	private void generateDominoes() {
-		_d = new LinkedList<Domino>();
+		_Digits = new LinkedList<Domino>();
 		int count = 0;
 		int x = 0;
 		int y = 0;
 		for (int l = 0; l <= 6; l++) {
 			for (int h = l; h <= 6; h++) {
 				Domino d = new Domino(h, l);
-				_d.add(d);
+				_Digits.add(d);
 				d.place(x, y, x + 1, y);
 				count++;
 				x += 2;
@@ -56,14 +56,14 @@ public class Main {
 	}
 	// Generating number of guesses for the user
 	private void generateGuesses() {
-		_g = new LinkedList<Domino>();
+		_Grid = new LinkedList<Domino>();
 		int count = 0;
 		int x = 0;
 		int y = 0;
 		for (int l = 0; l <= 6; l++) {
 			for (int h = l; h <= 6; h++) {
 				Domino d = new Domino(h, l);
-				_g.add(d);
+				_Grid.add(d);
 				count++;
 			}
 		} // If number of guesses is not equal to 28 - Provide output for user and exit program
@@ -74,7 +74,7 @@ public class Main {
 	}
 	// Loop Method updating grid array based on domino position
 	void collateGrid() {
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			if (!d.placed) {
 				grid[d.hy][d.hx] = 9;
 				grid[d.ly][d.lx] = 9;
@@ -91,7 +91,7 @@ public class Main {
 				gg[r][c] = 9;
 			}
 		}
-		for (Domino d : _g) {
+		for (Domino d : _Grid) {
 			if (d.placed) {
 				gg[d.hy][d.hx] = d.high;
 				gg[d.ly][d.lx] = d.low;
@@ -126,21 +126,21 @@ public class Main {
 		}
 		return 11;
 	}
-	// Method used to shuffle dominos stored in '_d.'
+	// Method used to shuffle dominos stored in '_Digits.'
 	private void shuffleDominoesOrder() {
 		List<Domino> shuffled = new LinkedList<Domino>();
-		// While loop used to repeat the process until '_d' list is empty
-		while (_d.size() > 0) {
-			int n = (int) (Math.random() * _d.size());
-			shuffled.add(_d.get(n));
-			_d.remove(n);
+		// While loop used to repeat the process until '_Digits' list is empty
+		while (_Digits.size() > 0) {
+			int n = (int) (Math.random() * _Digits.size());
+			shuffled.add(_Digits.get(n));
+			_Digits.remove(n);
 		}
 
-		_d = shuffled;
+		_Digits = shuffled;
 	}
-	// Method used to invert dominoes in the '_d' list
+	// Method used to invert dominoes in the '_Digits' list
 	private void invertSomeDominoes() {
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			if (Math.random() > 0.5) {
 				d.invert();
 			}
@@ -151,7 +151,7 @@ public class Main {
 		int x = 0;
 		int y = 0;
 		int count = 0;
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			count++;
 			d.place(x, y, x + 1, y);
 			x += 2;
@@ -231,9 +231,9 @@ public class Main {
 	private boolean thisIsTopLeftOfDomino(int x, int y, Domino d) {
 		return (x == Math.min(d.lx, d.hx)) && (y == Math.min(d.ly, d.hy));
 	}
-	// Method used to find domino in the '_d' list
+	// Method used to find domino in the '_Digits' list
 	private Domino findDominoAt(int x, int y) {
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			if ((d.lx == x && d.ly == y) || (d.hx == x && d.hy == y)) {
 				return d;
 			}
@@ -242,7 +242,7 @@ public class Main {
 	}
 	// Finding users guess
 	private Domino findGuessAt(int x, int y) {
-		for (Domino d : _g) {
+		for (Domino d : _Grid) {
 			if ((d.lx == x && d.ly == y) || (d.hx == x && d.hy == y)) {
 				return d;
 			}
@@ -251,7 +251,7 @@ public class Main {
 	}
 	// Finding users guesses
 	private Domino findGuessByLH(int x, int y) {
-		for (Domino d : _g) {
+		for (Domino d : _Grid) {
 			if ((d.low == x && d.high == y) || (d.high == x && d.low == y)) {
 				return d;
 			}
@@ -260,22 +260,22 @@ public class Main {
 	}
 	// Finding users guesses
 	private Domino findDominoByLH(int x, int y) {
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			if ((d.low == x && d.high == y) || (d.high == x && d.low == y)) {
 				return d;
 			}
 		}
 		return null;
 	}
-	// Print dominos - array list '_d'
+	// Print dominos - array list '_Digits'
 	private void printDominoes() {
-		for (Domino d : _d) {
+		for (Domino d : _Digits) {
 			System.out.println(d);
 		}
 	}
-	// Print Guesses - array list '_g'
+	// Print Guesses - array list '_Grid'
 	private void printGuesses() {
-		for (Domino d : _g) {
+		for (Domino d : _Grid) {
 			System.out.println(d);
 		}
 	}
@@ -332,7 +332,7 @@ public class Main {
 		        System.out.println();
 		        break;      
 		      case 0: {
-		        if (_d == null) {
+		        if (_Digits == null) {
 		          System.out.println("It is a shame that you did not want to play");
 		        } else {
 		          System.out.println("Thankyou for playing");
@@ -443,7 +443,7 @@ public class Main {
 		            printGuessGrid();
 		            break;
 		          case 3:
-		            Collections.sort(_g);
+		            Collections.sort(_Grid);
 		            printGuesses();
 		            break;
 		          case 4:
@@ -758,7 +758,7 @@ public class Main {
 		        recordTheScore();
 		        System.out.println("Here is the solution:");
 		        System.out.println();
-		        Collections.sort(_d);
+		        Collections.sort(_Digits);
 		        printDominoes();
 		        System.out.println("you scored " + score);
 		
@@ -872,7 +872,7 @@ public class Main {
 		  }
 		
 		  public void drawDominoes(Graphics g) {
-		    for (Domino d : _d) {
+		    for (Domino d : _Digits) {
 		      pf.dp.drawDomino(g, d);
 		    }
 		  }
@@ -890,7 +890,7 @@ public class Main {
 		  }
 		
 		  public void drawGuesses(Graphics g) {
-		    for (Domino d : _g) {
+		    for (Domino d : _Grid) {
 		      pf.dp.drawDomino(g, d);
 		    }
 		  }
