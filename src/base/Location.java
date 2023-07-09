@@ -31,13 +31,11 @@ public class Location extends SpacePlace {
 	}
 	// Loop method to show object as string - Checks for values 'd' and returns different outcomes 
 	public String toString() {
-		if (d == null) {
-			tmp = column + 1;
-			return "(" + (tmp) + "," + (row + 1) + ")";
-		} else {
-			tmp = column + 1;
-			return "(" + (tmp) + "," + (row + 1) + "," + d + ")";
-		}
+	    String result = "(" + (column + 1) + "," + (row + 1) + ")";
+	    if (d != null) {
+	        result += "," + d;
+	    }
+	    return result;
 	}
 	// Loop method used to draw grid lines using graphics object 'g'
 	public void drawGridLines(Graphics g) {
