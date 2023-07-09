@@ -29,8 +29,12 @@ public class Location extends SpacePlace {
 		this(row, column);
 		this.d = d;
 	}
-	// Loop method to show object as string - Checks for values 'd' and returns different outcomes 
+	// 
 	public String toString() {
+	    return gCoordinatesString();
+	}
+	// Loop method to show object as string - Checks for values 'd' and returns different outcomes 
+	private String gCoordinatesString() {
 	    String result = "(" + (column + 1) + "," + (row + 1) + ")";
 	    if (d != null) {
 	        result += "," + d;
