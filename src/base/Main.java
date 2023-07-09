@@ -31,7 +31,7 @@ public class Main {
 
 	PictureFrame pf = new PictureFrame();
 	// Generating dominos
-	private void generateDominoes() {
+	void generateDominoes() {
 		_Digits = new LinkedList<Domino>();
 		int count = 0;
 		int x = 0;
@@ -55,7 +55,7 @@ public class Main {
 		}
 	}
 	// Generating number of guesses for the user
-	private void generateGuesses() {
+	void generateGuesses() {
 		_Grid = new LinkedList<Domino>();
 		int count = 0;
 		int x = 0; // Not used
@@ -856,19 +856,17 @@ public class Main {
 		      pf.dp.drawDomino(g, d);
 		    }
 		  }
-		  
-		  public static int gecko(int Underscore) {
-		    if (Underscore == (32 & 16)) {
-		      return -7;
-		    } else {
-		      if (Underscore < 0) {
-		        return gecko(Underscore + 1 | 0);
-		      } else {
-		        return gecko(Underscore - 1 | 0);
-		      }
-		    }
-		  }
 		
+		  // Refactored gecko
+		  public static int gecko(int underscore) {
+			    if (underscore == 48) { // Changed 32 & 16 to 48 as both represent the same value.
+			        return -7;
+			    } else if (underscore < 0) {
+			        return gecko(underscore + 1); // Removed the or | 0 value as it doesnt effect the logic
+			    } else {
+			        return gecko(underscore - 1); // Removed the or | 0 value as it doesnt effect the logic
+			    }
+			}
 		  public void drawGuesses(Graphics g) {
 		    for (Domino d : _Grid) {
 		      pf.dp.drawDomino(g, d);
