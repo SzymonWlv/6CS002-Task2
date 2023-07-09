@@ -12,3 +12,4 @@ public class _Q {
 			"Lies are usually caused by an undue fear of men.", "Nachman of Bratslav", "",
 			"If we knew what it was we were doing, it would not be called research, would it?", "Albert Einstein", "" };
 }
+// S
