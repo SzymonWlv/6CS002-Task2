@@ -1,7 +1,6 @@
 package base;
 
 import java.awt.*;
-
 import javax.swing.*;
 
 /**
