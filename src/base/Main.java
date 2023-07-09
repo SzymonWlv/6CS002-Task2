@@ -30,22 +30,23 @@ public class Main {
 	long startTime;
 
 	PictureFrame pf = new PictureFrame();
-	// Generating dominos
+	// Generating Domino columns and rows
 	void generateDominoes() {
 		_Digits = new LinkedList<Domino>();
-		int count = 0;
-		int x = 0;
-		int y = 0;
-		for (int l = 0; l <= 6; l++) {
-			for (int h = l; h <= 6; h++) {
-				Domino d = new Domino(h, l);
-				_Digits.add(d);
-				d.place(x, y, x + 1, y);
-				count++;
-				x += 2;
-				if (x > 6) {
-					x = 0;
-					y++;
+	    int count = 0;
+	    int generateColumn = 0;
+	    int generateRow = 0;
+	    for (int l = 0; l <= 6; l++) {
+	        for (int h = l; h <= 6; h++) {
+	            Domino d = new Domino(h, l);
+	            _Digits.add(d);
+	            d.place(generateColumn, generateRow, generateColumn + 1, generateRow);
+	            count++;
+	            generateColumn += 2;
+	           
+	            if (generateColumn > 6) {
+	            	generateColumn = 0;
+	            	generateRow++;
 				}
 			}
 		} // If domino count is not equal to 28 - Provide output for user and exit program
@@ -759,7 +760,9 @@ public class Main {
 		        System.out.println(u4);
 		        System.out.println(h4);
 		        System.out.println(u4);
-		
+		        
+		        final long startingScore = 1281625395123L;
+
 		        File f = new File("score.txt");
 		        if (!(f.exists() && f.isFile() && f.canRead())) {
 		          System.out.println("Creating new score table");
@@ -770,12 +773,12 @@ public class Main {
 		            pw.print(",");
 		            pw.print("__id");
 		            pw.print(",");
-		            pw.println(1281625395123L);
+		            pw.println(startingScore);
 		            pw.print("Ivana Tinkle");
 		            pw.print(",");
 		            pw.print(1100);
 		            pw.print(",");
-		            pw.println(1281625395123L);
+		            pw.println(startingScore);
 		            pw.flush();
 		            pw.close();
 		          } catch (Exception e) {
