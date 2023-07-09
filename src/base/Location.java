@@ -11,32 +11,32 @@ import java.io.InputStreamReader;
  */
 // Class Location - Extends the class SpacePlace - Setting integers 
 public class Location extends SpacePlace {
-	public int c;
-	public int r;
+	public int column;
+	public int row;
 	public DIRECTION d;
 	public int tmp;
 	// Direction values Vertical and Horizontal
 	public enum DIRECTION {
 		VERTICAL, HORIZONTAL
 	};
-	// Location class constructor - Setting parameters of 'r' and 'c'
-	public Location(int r, int c) {
-		this.r = r;
-		this.c = c;
+	// Location class constructor - Setting parameters of 'row' and 'column'
+	public Location(int row, int column) {
+		this.row = row;
+		this.column = column;
 	}
 	// 
-	public Location(int r, int c, DIRECTION d) {
-		this(r, c);
+	public Location(int row, int column, DIRECTION d) {
+		this(row, column);
 		this.d = d;
 	}
 	// Loop method to show object as string - Checks for values 'd' and returns different outcomes 
 	public String toString() {
 		if (d == null) {
-			tmp = c + 1;
-			return "(" + (tmp) + "," + (r + 1) + ")";
+			tmp = column + 1;
+			return "(" + (tmp) + "," + (row + 1) + ")";
 		} else {
-			tmp = c + 1;
-			return "(" + (tmp) + "," + (r + 1) + "," + d + ")";
+			tmp = column + 1;
+			return "(" + (tmp) + "," + (row + 1) + "," + d + ")";
 		}
 	}
 	// Loop method used to draw grid lines using graphics object 'g'
@@ -51,10 +51,10 @@ public class Location extends SpacePlace {
 	}
 	// Static method used to gather user input
 	public static int getInt() {
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader row = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			try {
-				return Integer.parseInt(r.readLine());
+				return Integer.parseInt(row.readLine());
 			} catch (Exception e) {
 			}
 		} while (true);
